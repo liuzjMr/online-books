@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<!-- thymeleaf common header -->
+<div th:include="fragments/table :: table"></div>
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+    <!-- Content Wrapper. Contains page content -->
+    <div class="wrapper">
+        <!-- Content Header (Page header) -->
+        <section class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                       <h1 th:text="${book.bookName}"></h1>
+                    </div>
+                    <div class="col-sm-6">
+                        <ol class="breadcrumb float-sm-right">
+                            <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
+                            <li class="breadcrumb-item active">Chapters Management</li>
+                        </ol>
+                    </div>
+                </div>
+            </div><!-- /.container-fluid -->
+        </section>
+
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#add-chapter">
+                                        Add Chapter
+                                    </button>
+                                </div>
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                <input type="hidden" id="oldBookNumber" name="oldBookNumber" th:value="${book.bookNumber}">
+                                <table id="chapters" class="table table-bordered table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>Chapter Title</th>
+                                        <th>Chapter Audio</th>
+                                        <th>Status</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+
+                                    </tbody>
+                                </table>
+
+
+                            </div>
+                            <!-- /.card-body -->
+                        </div>
+
+                    </div>
+                    <!-- /.col -->
+                </div>
+                <!-- /.row -->
+            </div>
+            <!-- /.container-fluid -->
+        </section>
+        <!-- /.content -->
+    </div>
+
+
+    <!-- Control Sidebar -->
+    <aside class="control-sidebar control-sidebar-dark">
+        <!-- Control sidebar content goes here -->
+    </aside>
+    <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<div class="modal fade" id="add-chapter">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Chapter</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form th:action="@{/saveChapter}" th:object="${bookChapter}" method="post" id="add-chapter-form">
+
+                    <input type="hidden" id="bookNumber" name="bookNumber" th:value="${book.bookNumber}">
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Chapter Title</label>
+                                <input   id="chapterTitle" name="chapterTitle" type="text" class="form-control" placeholder="Enter ..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Chapter Audio</label>
+                                <input id="chapterAudio" name="chapterAudio" type="text" class="form-control" placeholder="Enter ...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Chapter Cover Image</label>
+                                <input id="chapterCoverImage" name="chapterCoverImage" type="text" class="form-control" placeholder="Enter ...">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Chapter Content</label>
+                                <textarea id="chapterContent" name="chapterContent" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-info">Submit</button>
+                        <button type="button" id="add-cancel-button" class="btn btn-default float-right">Cancel</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+<div class="modal fade" id="edit-chapter">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Add Chapter</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="edit-chapter-form">
+
+                    <input type="hidden" id="id-edit" name="id">
+                    <input type="hidden" id="bookNumber-edit" name="bookNumber">
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Chapter Title</label>
+                                <input   id="chapterTitle-edit" name="chapterTitle" type="text" class="form-control" placeholder="Enter ..." />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Chapter Audio</label>
+                                <input id="chapterAudio-edit" name="chapterAudio" type="text" class="form-control" placeholder="Enter ...">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- text input -->
+                            <div class="form-group">
+                                <label>Chapter Cover Image</label>
+                                <input id="chapterCoverImage-edit" name="chapterCoverImage" type="text" class="form-control" placeholder="Enter ...">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Chapter Content</label>
+                                <textarea id="chapterContent-edit" name="chapterContent" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <button type="submit" class="btn btn-info" id="edit-button">Submit</button>
+                        <button type="button" id="edit-cancel-button" class="btn btn-default float-right">Cancel</button>
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+        <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+<!-- Page specific script -->
+<script>
+
+    let bookNumber = document.getElementById("oldBookNumber").value;
+
+     $(document).ready(function() {
+         $('#chapters').DataTable({
+             "paging": false,
+             "searching": false,
+
+             "ajax": {
+                 "url": `/chapterInfos/`+bookNumber,
+             },
+             "columns": [
+                 { "data": "chapterTitle" },
+                 { "data": "chapterAudio" },
+                 {
+                     "data": null,
+                     "render": function(data, type, row) {
+                         return `
+                     <button class="btn btn-warning btn-sm edit-btn" data-id="${row.id}">Edit</button>
+                     <button class="btn btn-danger btn-sm delete-btn" data-id="${row.id}">Delete</button>
+                 `;
+                     }
+                 }
+             ]
+         });
+     });
+
+
+    $('#add-cancel-button').on('click', function() {
+        $('#add-chapter-form').trigger("reset");  // clean from
+        $('#add-chapter').modal('hide');    // hidden modal
+    });
+
+
+
+    $('#chapters').on('click', '.edit-btn', function() {
+        const id = $(this).data('id');
+        // 处理编辑操作，弹出编辑表单等
+        $.ajax({
+            url: '/chapterInfo/' + id,
+            type: 'GET',
+            success: function(chapter) {
+                $('#id-edit').val(chapter.id);
+                $('#bookNumber-edit').val(chapter.bookNumber);
+                $('#chapterTitle-edit').val(chapter.chapterTitle);
+                $('#chapterAudio-edit').val(chapter.chapterAudio);
+                $('#chapterCoverImage-edit').val(chapter.chapterCoverImage);
+                $('#chapterContent-edit').val(chapter.chapterContent);
+
+                $('#edit-chapter').modal('show'); // 打开模态框
+            }
+        });
+
+    });
+
+    $('#edit-cancel-button').on('click', function() {
+        $('#edit-chapter-form').trigger("reset");  // clean from
+        $('#edit-chapter').modal('hide');    // hidden modal
+    });
+
+
+
+    $('#edit-button').on('click', function() {
+        // get from data
+        const chapterData = {
+            id: $('#id-edit').val(),
+            bookNumber: $('#bookNumber-edit').val(),
+            chapterTitle: $('#chapterTitle-edit').val(),
+            chapterAudio: $('#chapterAudio-edit').val(),
+            chapterCoverImage: $('#chapterCoverImage-edit').val(),
+            chapterContent: $('#chapterContent-edit').val()
+        };
+
+        // send request
+        $.ajax({
+            url: `/editChapter/${chapterData.id}`, // API Update
+            type: 'PUT',
+            contentType: 'application/json',
+            data: JSON.stringify(chapterData),
+            success: function(response) {
+                // 请求成功，关闭模态框并刷新表格
+                $('#edit-chapter').modal('hide');
+                $('#edit-chapter-form').trigger("reset"); // clean from
+                $('#chapters').DataTable().ajax.reload(); // reload DataTable
+                alert("Edit Success！");
+            },
+            error: function(xhr, status, error) {
+                console.error("Edit failed:", error);
+                alert("Edit Failed");
+            }
+        });
+    });
+
+
+    $('#chapters').on('click', '.delete-btn', function() {
+        const id = $(this).data('id');
+        // 处理删除操作，弹出确认框等
+        if (confirm("Are you sure you want to delete this record？")) {
+            $.ajax({
+                url: `/deleteChapter/${id}`,
+                type: 'DELETE',
+                success: function(response) {
+                    // reload table
+                    $('#chapters').DataTable().ajax.reload();
+                },
+                error: function(xhr, status, error) {
+                    alert("Delete Failed");
+                }
+            });
+        }
+    });
+
+</script>
+</body>
+</html>

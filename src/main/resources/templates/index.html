@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<!-- thymeleaf common header -->
+<div th:include="fragments/header :: header"></div>
+
+<body data-spy="scroll" data-target=".site-navbar-target" data-offset="300">
+
+  <div class="site-wrap">
+
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+
+    
+    <div class="header-top">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-12 col-lg-6 d-flex">
+            <a href="index.html" class="site-logo">
+              Online Books
+            </a>
+
+            <a href="#" class="ml-auto d-inline-block d-lg-none site-menu-toggle js-menu-toggle text-black"><span
+                class="icon-menu h3"></span></a>
+
+          </div>
+          <div class="col-12 col-lg-6 ml-auto d-flex">
+            <div class="ml-md-auto top-social d-none d-lg-inline-block">
+             
+            </div>
+            <form action="#" class="search-form d-inline-block">
+
+              <div class="d-flex">
+                <input type="email" class="form-control" placeholder="Search...">
+                <button type="submit" class="btn btn-secondary" ><span class="icon-search"></span></button>
+              </div>
+            </form>
+
+            
+          </div>
+          <div class="col-6 d-block d-lg-none text-right">
+            
+          </div>
+        </div>
+      </div>
+      
+
+
+      
+      <div class="site-navbar py-2 js-sticky-header site-navbar-target d-none pl-0 d-lg-block" role="banner">
+
+      <div class="container">
+        <div class="d-flex align-items-center">
+          
+          <div class="mr-auto">
+            <nav class="site-navigation position-relative text-right" role="navigation">
+              <ul class="site-menu main-menu js-clone-nav mr-auto d-none pl-0 d-lg-block">
+                <li class="active">
+                  <a th:href="@{/home}" class="nav-link text-left">Home</a>
+                </li>
+                <li>
+                  <a th:href="@{/children}" class="nav-link text-left">Children</a>
+                </li>
+                <li>
+                  <a th:href="@{/fiction}" class="nav-link text-left">Fiction</a>
+                </li>
+                <li>
+                  <a th:href="@{/fantasy}" class="nav-link text-left">Fantasy</a>
+                </li>
+                <li>
+                    <a th:href="@{/mystery}" class="nav-link text-left">Mystery</a>
+                </li>
+             
+              </ul>                             
+            </nav> 
+          </div> 
+        </div>
+      </div>
+
+    </div>
+    
+    </div>
+
+    <div class="site-section py-0">
+      <div class="owl-carousel hero-slide owl-style">
+
+        <div th:each=" adBook : ${adBooks}">
+          <div class="site-section">
+            <div class="container">
+              <div class="half-post-entry d-block d-lg-flex bg-light">
+                <div class="img-bg" th:style="|background-image: url('${adBook.bookCoveImage}')|"></div>
+                <div class="contents">
+
+                  <h2><a th:href="@{/single(id=${adBook.id})}" th:text="${adBook.bookName}"></a></h2>
+                  <p class="mb-3" th:text="${adBook.bookIntroduction}"></p>
+
+                  <div class="post-meta">
+                    <span class="d-block"><a href="#" th:text="${adBook.bookAuthor}"></a></span>
+                    <span class="date-read"><span th:text="${adBook.bookReleaseDate}"></span><span class="mx-1"> &bullet;</span> <span  th:text="${adBook.bookLanguage}"></span>  <span class="icon-star2"> <span  th:text="${adBook.bookStar}"></span> </span></span>
+
+                  </div>
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  
+ 
+
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-9">
+            <div class="section-title">
+              <h2>Recent News</h2>
+            </div>
+
+            <div th:each=" newBook : ${newBooks}">
+              <div class="post-entry-2 d-flex">
+                <div class="thumbnail order-md-2" th:style="|background-image: url('${newBook.bookCoveImage}')|"></div>
+                <div class="contents order-md-1 pl-0">
+                  <h2><a th:href="@{/single(id=${newBook.id})}" th:text="${newBook.bookName}"></a></h2>
+                  <p class="mb-3" th:text="${newBook.bookIntroduction}"> </p>
+                  <div class="post-meta">
+                    <span class="d-block"><a href="#" th:text="${newBook.bookAuthor}"></a></span>
+                    <span class="date-read"><span th:text="${newBook.bookReleaseDate}"></span><span class="mx-1">&bullet;</span> <span th:text="${newBook.bookLanguage}"></span> <span class="icon-star2"><span th:text="${newBook.bookStar}"></span></span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+          <div class="col-lg-3">
+            <div class="section-title">
+              <h2>Popular Posts</h2>
+            </div>
+            <div th:each=" hotBook,stat : ${hotBooks}">
+              <div class="trend-entry d-flex">
+                <div class="number align-self-start" th:text="'0'+${stat.index + 1}"></div>
+                <div class="trend-contents">
+                  <h2><a th:href="@{/single(id=${hotBook.id})}" th:text="${hotBook.bookName}"></a></h2>
+                  <div class="post-meta">
+                    <span class="d-block"><a href="#" th:text="${hotBook.bookAuthor}"></a> </span>
+                    <span class="date-read"><span th:text="${hotBook.bookReleaseDate}"></span> <span class="mx-1">&bullet;</span> <span th:text="${hotBook.bookLanguage}"></span> <span class="icon-star2"><span th:text="${hotBook.bookStar}"></span></span></span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <p>
+              <a href="#" class="more">See All Popular <span class="icon-keyboard_arrow_right"></span></a>
+            </p>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-6">
+            <ul class="custom-pagination list-unstyled">
+              <li><a href="#">1</a></li>
+              <li class="active">2</li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- thymeleaf common footer -->
+    <div th:replace="fragments/footer :: footer"></div>
+
+    
+
+  </div>
+
+  <!-- loader -->
+  <div id="loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#ff5e15"/></svg></div>
+
+</body>
+
+</html>
