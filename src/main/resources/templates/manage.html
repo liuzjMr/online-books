@@ -201,14 +201,22 @@
                     </div>
 
 
-
-
                     <div class="row">
                         <div class="col-sm">
                             <!-- textarea -->
                             <div class="form-group">
                                 <label>Book Introduction</label>
                                 <textarea id="bookIntroduction" name="bookIntroduction" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Book Contents</label>
+                                <textarea id="bookContents" name="bookContents" class="form-control" rows="3" placeholder="Enter ..."></textarea>
                             </div>
                         </div>
                     </div>
@@ -363,6 +371,16 @@
                             </div>
                         </div>
                     </div>
+
+                    <div class="row">
+                        <div class="col-sm">
+                            <!-- textarea -->
+                            <div class="form-group">
+                                <label>Book Contents</label>
+                                <textarea id="bookContents-edit" name="bookContents" class="form-control" rows="3" placeholder="Enter ..."></textarea>
+                            </div>
+                        </div>
+                    </div>
                     <div class="card-footer">
                         <button type="submit" class="btn btn-info" id="edit-button">Submit</button>
                         <button type="button"  id="edit-cancel-button" class="btn btn-default float-right">Cancel</button>
@@ -452,6 +470,7 @@
                 $('#isNew-edit').val(book.isNew);
                 $('#isHot-edit').val(book.isHot);
                 $('#bookIntroduction-edit').val(book.bookIntroduction);
+                $('#bookContents-edit').val(book.bookContents);
                 $('#bookNumber-edit').val(book.bookNumber);
                 $('#edit-book').modal('show'); // 打开模态框
             }
@@ -473,7 +492,8 @@
             isAd: $('#isAd-edit').val(),
             isNew: $('#isNew-edit').val(),
             isHot: $('#isHot-edit').val(),
-            bookIntroduction: $('#bookIntroduction').val()
+            bookIntroduction: $('#bookIntroduction').val(),
+            bookContens: $('#bookContents').val()
 
         };
 

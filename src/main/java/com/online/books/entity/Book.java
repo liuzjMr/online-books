@@ -36,6 +36,11 @@ public class Book {
     @Column(name = "book_introduction")
     private String bookIntroduction;
 
+    @Lob
+    @Column(name = "book_contents")
+    private String bookContents;
+
+
     @Column(name = "book_cove_image")
     private String bookCoveImage;
 
