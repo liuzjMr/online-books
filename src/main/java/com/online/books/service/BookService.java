@@ -10,8 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 @Service
 public class BookService {
 
@@ -55,7 +53,8 @@ public class BookService {
         book.setBookType(bookType);
         ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("bookType", ExampleMatcher.GenericPropertyMatchers.exact());
         Example<Book> example = Example.of(book, matcher);
-        return booksRepository.findAll(example);
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return booksRepository.findAll(example,sort);
     }
 
 
@@ -64,7 +63,8 @@ public class BookService {
         book.setIsAd(1);
         ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("isAd", ExampleMatcher.GenericPropertyMatchers.exact());
         Example<Book> example = Example.of(book, matcher);
-        List<Book> all = booksRepository.findAll(example);
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        List<Book> all = booksRepository.findAll(example,sort);
         return all;
     }
 
@@ -72,8 +72,9 @@ public class BookService {
         Book book = new Book();
         book.setIsNew(1);
         ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("isNew", ExampleMatcher.GenericPropertyMatchers.exact());
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
         Example<Book> example = Example.of(book, matcher);
-        return booksRepository.findAll(example);
+        return booksRepository.findAll(example,sort);
     }
 
     public List<Book>  getBookByIsHot(){
@@ -81,7 +82,8 @@ public class BookService {
         book.setIsHot(1);
         ExampleMatcher matcher = ExampleMatcher.matching().withMatcher("isHot", ExampleMatcher.GenericPropertyMatchers.exact());
         Example<Book> example = Example.of(book, matcher);
-        return booksRepository.findAll(example);
+        Sort sort = Sort.by(Sort.Direction.DESC, "id");
+        return booksRepository.findAll(example,sort);
     }
 
 

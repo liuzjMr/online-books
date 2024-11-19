@@ -114,9 +114,7 @@
                         </div>
                     </div>
 
-                    <p th:text="${book.bookIntroduction}"></p>
-
-
+                    <p th:text="${book.bookContents}"></p>
 
 
                     <div class="pt-5">
@@ -139,7 +137,7 @@
                                 <h2><a href="#" th:text="${chapter.chapterTitle}"></a></h2>
                                 <div class="post-meta">
                                     <audio id="player2" preload="none" controls style="max-width: 100%">
-                                        <source src="http://www.largesound.com/ashborytour/sound/AshboryBYU.mp3" type="audio/mp3">
+                                        <source th:src="${chapter.chapterAudio}" type="audio/mp3">
                                     </audio>
                                 </div>
                             </div>

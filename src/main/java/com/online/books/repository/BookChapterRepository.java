@@ -9,6 +9,6 @@ import java.util.List;
 public interface BookChapterRepository extends JpaRepository<BookChapter, Long> {
 
 
-    @Query(value = "SELECT * FROM book_chapter WHERE book_number = :bookNumber ORDER BY id DESC", nativeQuery = true)
+    @Query(value = "SELECT * FROM book_chapter WHERE book_number = :bookNumber ORDER BY id ASC", nativeQuery = true)
     List<BookChapter> getBookChapterByBookNumber(String bookNumber);
 }

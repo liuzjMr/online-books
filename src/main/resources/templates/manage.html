@@ -16,7 +16,7 @@
                     </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a th:href="@{/home}">Home</a></li>
+                            <li class="breadcrumb-item"><a th:href="@{/manage}">Manage</a></li>
                             <li class="breadcrumb-item active">Book Management</li>
                         </ol>
                     </div>
@@ -43,10 +43,12 @@
                                 <table id="example2" class="table table-bordered table-hover">
                                     <thead>
                                     <tr>
+                                        <th style="width: 10px">#</th>
                                         <th>Book Name</th>
                                         <th>Book Author</th>
                                         <th>Book Release Date</th>
                                         <th>Book Number</th>
+                                        <th>Book Type</th>
                                         <th>Status</th>
                                     </tr>
                                     </thead>
@@ -408,6 +410,7 @@
             "lengthChange": false,
             "paging": true,
             "searching": false,
+            "ordering": false,
             "pageLength": 5,
             "ajax": {
                 "url": "/bookInfos",
@@ -417,13 +420,14 @@
                 }
             },
             "columns": [
+                { "data": "id"},
                 { "data": "bookName" },
                 { "data": "bookAuthor" },
                 { "data": "bookReleaseDate" },
                 { "data": "bookNumber" },
+                { "data": "bookType" },
                 {
                     "data": null,         // 此列不绑定数据
-                    "orderable": false,   // 设置不可排序
                     "render": function(data, type, row) {
                         // data 为当前行的所有数据对象
                         return `
@@ -492,8 +496,8 @@
             isAd: $('#isAd-edit').val(),
             isNew: $('#isNew-edit').val(),
             isHot: $('#isHot-edit').val(),
-            bookIntroduction: $('#bookIntroduction').val(),
-            bookContens: $('#bookContents').val()
+            bookIntroduction: $('#bookIntroduction-edit').val(),
+            bookContents: $('#bookContents-edit').val()
 
         };
 
