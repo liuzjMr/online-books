@@ -35,14 +35,6 @@ Administrators can:
 
 ---
 
-## What makes it special?
-1. **Audio + Text Sync**  
-   Users can read and listen at the same time, making learning and reading more fun.
-
-2. **Easy Management**  
-   Admins can organize books with just a few clicks.
-
----
 
 ## Why is this project useful?
 This platform combines reading and listening, making reading more fun and helpful for different people. The backend system also helps keep the library organized.
