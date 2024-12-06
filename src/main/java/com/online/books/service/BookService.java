@@ -1,5 +1,6 @@
 package com.online.books.service;
 
+import ch.qos.logback.core.util.StringUtil;
 import com.online.books.entity.Book;
 import com.online.books.repository.BooksRepository;
 import com.online.books.util.SnowflakeIdGenerator;
@@ -35,6 +36,9 @@ public class BookService {
         book.setBookNumber(generator.nextId() + "");
         book.setCreateTime(new Date());
         book.setUpdateTime(new Date());
+        if (StringUtil.isNullOrEmpty(book.getBookStar())){
+            book.setBookStar("5");
+        }
         return booksRepository.save(book);
     }
 

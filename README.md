@@ -15,7 +15,7 @@ The platform has two main parts:
 
 ## What can users do?
 Users can:
-- **Read books** online, like children’s stories, science fiction .
+- **Read books** online, like children’s stories, science fiction or other type stories.
 - **Listen to audio** for each chapter. 
 
 This is very helpful for kids and people learning a new language.
