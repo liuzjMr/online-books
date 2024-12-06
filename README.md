@@ -15,9 +15,8 @@ The platform has two main parts:
 
 ## What can users do?
 Users can:
-- **Read books** online, like children’s stories, science fiction, or novels.
-- **Listen to audio** for each chapter.
-- **Sync reading and listening**, so the text and audio play together.
+- **Read books** online, like children’s stories, science fiction .
+- **Listen to audio** for each chapter. 
 
 This is very helpful for kids and people learning a new language.
 
@@ -32,7 +31,7 @@ Administrators can:
 
 ## What technology does it use?
 - The **backend** uses Spring Data JPA and MySQL to store and manage data.
-- The **frontend** uses Thymeleaf and Bootstrap to make the pages look clean and work well on different devices.
+- The **frontend** uses Thymeleaf and Bootstrap to make the pages look clean.
 
 ---
 
